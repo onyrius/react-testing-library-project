@@ -101,6 +101,7 @@ Este repositório já contém uma aplicação React criada e configurada. Após 
         * `git status` (deve aparecer listado o arquivo _src/last.js_ em verde)
   * Faça o `commit` inicial
       * Exemplo:
+      
         * `git commit -m 'iniciando o projeto. VAMOS COM TUDO :rocket:'` (fazendo o primeiro commit)
         * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
 
