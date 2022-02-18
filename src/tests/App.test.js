@@ -1,3 +1,4 @@
+// import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import { Router } from 'react-router-dom';
@@ -28,3 +29,19 @@ test('Teste se é redirecionada para a página de `Pokémons Favoritados`', () =
   const favEl = screen.getByRole('link', { name: /favorite pokémons/i });
   expect(favEl).toBeInTheDocument();
 });
+test('Teste se é redirecionada para a página `Not Found`', () => {
+  const { history } = renderWithRouter(<App />); // acessando o historico
+  history.push('/qualquer rota'); // colocando uma rota errada no historico
+  const notFound = screen.getByRole('img',
+    { name: /pikachu crying because the page requested was not found/i });
+
+  expect(notFound).toBeInTheDocument();
+});
+/* test('landing on a bad page shows error 404', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/rota-inexistente');
+
+    const pageNotFound = screen.getByText(/Página não encontrada/i);
+    expect(pageNotFound).toBeInTheDocument();
+  }); */
