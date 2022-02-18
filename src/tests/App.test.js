@@ -13,6 +13,13 @@ const renderWithRouter = (component) => {
     ...render(<Router history={ history }>{component}</Router>), history,
   });
 };
+
+test('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
+  renderWithRouter(<App />);
+  const navEl = screen.getByRole('navigation');
+  expect(navEl).toBeInTheDocument();
+});
+
 test('Teste se o primeiro link possui o texto `Home`', () => {
   renderWithRouter(<App />);
   const homeEl = screen.getByRole('link', { name: /home/i });
@@ -37,11 +44,3 @@ test('Teste se é redirecionada para a página `Not Found`', () => {
 
   expect(notFound).toBeInTheDocument();
 });
-/* test('landing on a bad page shows error 404', () => {
-    const { history } = renderWithRouter(<App />);
-
-    history.push('/rota-inexistente');
-
-    const pageNotFound = screen.getByText(/Página não encontrada/i);
-    expect(pageNotFound).toBeInTheDocument();
-  }); */
