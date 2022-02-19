@@ -48,15 +48,44 @@ test(
     userEvent.click(buttonProx);
     const proxPokemon4 = screen.getByText(/mew/i);
     expect(proxPokemon4).toBeInTheDocument();
+
+    userEvent.click(buttonProx);
+    const proxPokemon5 = screen.getByText(/rapidash/i);
+    expect(proxPokemon5).toBeInTheDocument();
+
+    userEvent.click(buttonProx);
+    const proxPokemon6 = screen.getByText(/snorlax/i);
+    expect(proxPokemon6).toBeInTheDocument();
+
+    userEvent.click(buttonProx);
+    const proxPokemon7 = screen.getByText(/dragonair/i);
+    expect(proxPokemon7).toBeInTheDocument();
+
+    userEvent.click(buttonProx);
+    const proxPokemon8 = screen.getByText(/pikachu/i);
+    expect(proxPokemon8).toBeInTheDocument();
   },
 );
 
-/* test(
-  'O 1° Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;',
+test(
+  '- Teste se a Pokédex tem os botões de filtro.',
   () => {
     renderWithRouter(<App />);
-    const allPokemons = screen.getByRole('button', { name: /all/i });
-    expect(allPokemons).toBeInTheDocument();
+    const filterAllButton = screen.getByRole('button', { name: /all/i });
+    const filterElectricButton = screen.getByRole('button', { name: /electric/i });
+    const filterFireButton = screen.getByRole('button', { name: /fire/i });
+    const filterBugButton = screen.getByRole('button', { name: /bug/i });
+    const filterPoisonButton = screen.getByRole('button', { name: /poison/i });
+    const filterPsychicButton = screen.getByRole('button', { name: /psychic/i });
+    const filterNormalButton = screen.getByRole('button', {  name: /normal/i});
+    const filterDragonButton = screen.getByRole('button', {  name: /dragon/i});
+
+    expect(filterAllButton).toBeInTheDocument();
+    expect(filterElectricButton).toBeInTheDocument();
+    expect(filterFireButton).toBeInTheDocument();
+    expect(filterBugButton).toBeInTheDocument();
+    expect(filterPoisonButton).toBeInTheDocument();
+    expect(filterPsychicButton).toBeInTheDocument();
+    expect(filterDragonButton).toBeInTheDocument();
   },
 );
- */
