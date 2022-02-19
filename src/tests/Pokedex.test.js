@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import App from '../App';
+// import { filterPokemons } from '../components/Pokedex';
 
 const { render, screen } = require('@testing-library/react');
 
@@ -77,8 +78,8 @@ test(
     const filterBugButton = screen.getByRole('button', { name: /bug/i });
     const filterPoisonButton = screen.getByRole('button', { name: /poison/i });
     const filterPsychicButton = screen.getByRole('button', { name: /psychic/i });
-    const filterNormalButton = screen.getByRole('button', {  name: /normal/i});
-    const filterDragonButton = screen.getByRole('button', {  name: /dragon/i});
+    const filterNormalButton = screen.getByRole('button', { name: /normal/i });
+    const filterDragonButton = screen.getByRole('button', { name: /dragon/i });
 
     expect(filterAllButton).toBeInTheDocument();
     expect(filterElectricButton).toBeInTheDocument();
@@ -86,6 +87,32 @@ test(
     expect(filterBugButton).toBeInTheDocument();
     expect(filterPoisonButton).toBeInTheDocument();
     expect(filterPsychicButton).toBeInTheDocument();
+    expect(filterNormalButton).toBeInTheDocument();
     expect(filterDragonButton).toBeInTheDocument();
+  },
+);
+
+test(
+  `Testa se partir da seleção de um botão de tipo,
+   a Pokédex circula somente pelos pokémons daquele tipo`,
+  () => {
+    renderWithRouter(<App />);
+    const allButtons = screen.getAllByTestId('pokemon-type-button');
+    const allButtonsLength = 7;
+    expect(allButtons).toHaveLength(allButtonsLength);
+    userEvent.click(allButtons[4]);
+    const psychicInTheScreen = screen.getByRole('img', { name: /alakazam sprite/i });
+    expect(psychicInTheScreen).toBeInTheDocument();
+  },
+);
+
+test(
+  `A Pokedéx deverá mostrar os Pokémons normalmente
+   (sem filtros) quando o botão 'All' for clicado;`,
+  async () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', { name: /all/i });
+    expect(allButton).toBeInTheDocument();
+    userEvent.click(allButton);
   },
 );
