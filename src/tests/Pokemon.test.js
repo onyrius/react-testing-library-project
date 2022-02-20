@@ -40,7 +40,7 @@ informações de determinado pokémon`,
   expect(pokemonWeight).toBeInTheDocument();
 });
 
-test(`este se o card do Pokémon indicado na Pokédex contém
+test(`Teste se o card do Pokémon indicado na Pokédex contém
  um link de navegação para exibir detalhes deste Pokémon.
  O link deve possuir a URL '/pokemons/<id>', onde '<id>'
  é o id do Pokémon exibido;`, () => {
@@ -53,10 +53,21 @@ test(`este se o card do Pokémon indicado na Pokédex contém
   );
   const pokeDetails = screen.getByText(/More details/i);
   expect(pokeDetails).toBeInTheDocument();
-  console.log(pokeDetails);
   const { id } = pokemons[0];
   const pokemonDetailsRoute = `/pokemons/${id}`;
   expect(pokeDetails).toHaveAttribute('href', pokemonDetailsRoute);
 });
 
-/* test(``) */
+test(`Teste O ícone deve ser uma imagem com
+ o atributo 'src' contendo o caminho '/star-icon.svg'`, async () => {
+  renderWithRouter(
+    <Pokemon
+      pokemon={ pokemons[0] }
+      isFavorite
+    />,
+  );
+  const { name } = pokemons[0];
+  const favPokemon = screen.queryByAltText(`${name} is marked as favorite`);
+  const imgFavIconPokemon = '/star-icon.svg';
+  expect(favPokemon).toHaveAttribute('src', imgFavIconPokemon);
+});
