@@ -71,3 +71,7 @@ test(`Teste O ícone deve ser uma imagem com
   const imgFavIconPokemon = '/star-icon.svg';
   expect(favPokemon).toHaveAttribute('src', imgFavIconPokemon);
 });
+
+/** source : Higo dos Anjos
+ * https://github.com/tryber/sd-018-b-project-react-testing-library/pull/56/files
+ */
