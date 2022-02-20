@@ -26,10 +26,37 @@ informações de determinado pokémon`,
   const ponkemonRendered = screen.getByTestId('pokemon-name');
   expect(ponkemonRendered).toBeInTheDocument();
 
-  const pokemonName = screen.getByText(/pikachu/i);
+  const pokemonName = screen.getByText(name);
   expect(pokemonName).toBeInTheDocument();
+
+  const pokemonType = screen.getByText(type);
+  expect(pokemonType).toBeInTheDocument();
 
   const pokemonImage = screen.getByAltText(`${name} sprite`);
   expect(pokemonImage).toBeInTheDocument();
-  
+  expect(pokemonImage.src).toContain(image);
+
+  const pokemonWeight = screen.getByText(`Average weight: ${value} ${measurementUnit}`);
+  expect(pokemonWeight).toBeInTheDocument();
 });
+
+test(`este se o card do Pokémon indicado na Pokédex contém
+ um link de navegação para exibir detalhes deste Pokémon.
+ O link deve possuir a URL '/pokemons/<id>', onde '<id>'
+ é o id do Pokémon exibido;`, () => {
+  renderWithRouter(
+    <Pokemon
+      showDetailsLink
+      pokemon={ pokemons[0] }
+      isFavorite
+    />,
+  );
+  const pokeDetails = screen.getByText(/More details/i);
+  expect(pokeDetails).toBeInTheDocument();
+  console.log(pokeDetails);
+  const { id } = pokemons[0];
+  const pokemonDetailsRoute = `/pokemons/${id}`;
+  expect(pokeDetails).toHaveAttribute('href', pokemonDetailsRoute);
+});
+
+/* test(``) */
