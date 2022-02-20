@@ -113,6 +113,6 @@ test(
     renderWithRouter(<App />);
     const allButton = screen.getByRole('button', { name: /all/i });
     expect(allButton).toBeInTheDocument();
-    userEvent.click(allButton);
+    userEvent.click(allButton); // perguntar ao Thalles
   },
 );
