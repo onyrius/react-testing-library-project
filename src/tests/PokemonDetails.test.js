@@ -63,10 +63,21 @@ os mapas contendo as localizações do pokémon`, async () => {
 });
 
 test(`Teste se o usuário pode favoritar um pokémon
-através da página de detalhes.`, async () => {
+através da página de detalhes.`, () => {
   renderWithRouter(<App />);
   const detaislLink = screen.getByRole('link', { name: /more details/i });
   expect(detaislLink).toBeInTheDocument();
   userEvent.click(detaislLink);
- 
+
+  const checkboxFavNotcheck = screen.getByRole('checkbox', {
+    name: /pokémon favoritado\?/i, checked: false });
+  expect(checkboxFavNotcheck).toBeInTheDocument();
+  userEvent.click(checkboxFavNotcheck);
+
+  const checkboxFavCheck = screen.getByRole('checkbox', {
+    name: /pokémon favoritado\?/i, checked: true });
+  expect(checkboxFavCheck).toBeInTheDocument();
+  const starFavPokemon = screen.getByRole('img', {
+    name: /pikachu is marked as favorite/i });
+  expect(starFavPokemon).toBeInTheDocument();
 });
