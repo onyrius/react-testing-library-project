@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import App from '../App';
+/* import data from '../data'; */
 
 const { render, screen } = require('@testing-library/react');
 
@@ -39,18 +40,74 @@ test(
     expect(moreDetails).toBeInTheDocument();
 
     userEvent.click(moreDetails);
-
-    const { history } = renderWithRouter(<App />);
-    history.push('pokemons/25');
-    const pokemonDetails = await screen.findAllByText(/pikachu details/i);
-    expect(pokemonDetails[0]).toBeInTheDocument(); // è recebido um array em pokemonDetails e especifico o que deve ser encontrado quando coloco a posiçao  [0] no array
-
-    const boxChoiceFavoritePokemon = screen.getByRole('checkbox', {
+    const buttonCheckFav = screen.getByRole('checkbox', {
       name: /pokémon favoritado\?/i });
-    userEvent.click(boxChoiceFavoritePokemon);
+    expect(buttonCheckFav).toBeInTheDocument();
+    userEvent.click(buttonCheckFav);
 
-    history.push('/favorites');
-    const pokemonFarites = await screen.findAllByText(/pikachu/i);
-    expect(pokemonFarites[0]).toBeInTheDocument();
+    const homeLink = screen.getByRole('link', { name: /home/i });
+    expect(homeLink).toBeInTheDocument();
+    userEvent.click(homeLink);
+
+    const proxPokemonButton = screen.getByRole('button', { name: /próximo pokémon/i });
+    userEvent.click(proxPokemonButton);
+
+    const proxPokemon = screen.getByText(/charmander/i);
+    expect(proxPokemon).toBeInTheDocument();
+    const moreDetailsCharmander = screen.getByRole('link', { name: /more details/i });
+    expect(moreDetailsCharmander).toBeInTheDocument();
+    userEvent.click(moreDetailsCharmander);
+    const titleDetailsCharmander = screen.getByRole('heading', {
+      name: /charmander details/i });
+    expect(titleDetailsCharmander).toBeInTheDocument();
+
+    const buttonNotCheckFavCharmander = screen.getByRole('checkbox', {
+      name: /pokémon favoritado\?/i, checked: false });
+    expect(buttonNotCheckFavCharmander).toBeInTheDocument();
+    userEvent.click(buttonNotCheckFavCharmander);
+    const buttonCheckFavCharmander = screen.getByRole('checkbox', {
+      name: /pokémon favoritado\?/i, checked: true });
+    expect(buttonCheckFavCharmander).toBeInTheDocument();
+
+    const favoriteslink = screen.getByRole('link', { name: /favorite pokémons/i });
+    userEvent.click(favoriteslink);
+
+    const titlefavoritePokemons = screen.getByRole('heading', {
+      name: /favorite pokémons/i });
+    expect(titlefavoritePokemons).toBeInTheDocument();
+
+    const starFavoritesPokemons1 = screen.getByRole('img', {
+      name: /pikachu is marked as favorite/i });
+    expect(starFavoritesPokemons1).toBeInTheDocument();
+
+    const starFavoritesPokemons2 = screen.getByRole('img', {
+      name: /charmander is marked as favorite/i });
+    expect(starFavoritesPokemons2).toBeInTheDocument();
+
+    const moreDetailsAllLinks = screen.getAllByText(/More details/i);
+    expect(moreDetailsAllLinks.length).toBe(2);
+    userEvent.click(moreDetailsAllLinks[1]);
+
+    const titleDetailsCharmander2 = screen.getByRole('heading', {
+      name: /charmander details/i });
+    expect(titleDetailsCharmander2).toBeInTheDocument();
+
+    const buttonCheckFavCharmander2 = screen.getByRole('checkbox', {
+      name: /pokémon favoritado\?/i, checked: true });
+    expect(buttonCheckFavCharmander2).toBeInTheDocument();
+
+    userEvent.click(buttonCheckFavCharmander2);
+    const buttonCheckNotFavCharmander2 = screen.getByRole('checkbox', {
+      name: /pokémon favoritado\?/i, checked: false });
+    expect(buttonCheckNotFavCharmander2).toBeInTheDocument();
+
+    const titlefavoritePokemons2 = screen.getByRole('link', {
+      name: /favorite pokémons/i });
+    expect(titlefavoritePokemons2).toBeInTheDocument();
+    userEvent.click(titleDetailsCharmander2);
+
+    const newFavList = screen.getByRole('link', { name: /favorite pokémons/i });
+    expect(newFavList).toBeInTheDocument();
+    expect(starFavoritesPokemons2).not.toBeInTheDocument();
   },
 );
