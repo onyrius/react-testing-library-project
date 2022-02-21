@@ -50,5 +50,4 @@ os mapas contendo as localizações do pokémon`, async () => {
   const locationPokemon = await screen.findByRole('heading', {
     name: /game locations of pikachu/i });
   expect(locationPokemon).toBeInTheDocument();
-
 });
