@@ -50,4 +50,14 @@ os mapas contendo as localizações do pokémon`, async () => {
   const locationPokemon = await screen.findByRole('heading', {
     name: /game locations of pikachu/i });
   expect(locationPokemon).toBeInTheDocument();
+
+  const imagesLocationPokemon = screen.getAllByAltText('Pikachu location');
+  expect(imagesLocationPokemon.length).toBe(2);
+  expect(imagesLocationPokemon[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+  expect(imagesLocationPokemon[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+
+  const nameLocation = screen.getByText(/kanto viridian forest/i);
+  const nameLocation2 = screen.getByText(/kanto power plant/i);
+  expect(nameLocation).toBeInTheDocument();
+  expect(nameLocation2).toBeInTheDocument();
 });
