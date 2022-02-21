@@ -61,3 +61,12 @@ os mapas contendo as localizações do pokémon`, async () => {
   expect(nameLocation).toBeInTheDocument();
   expect(nameLocation2).toBeInTheDocument();
 });
+
+test(`Teste se o usuário pode favoritar um pokémon
+através da página de detalhes.`, async () => {
+  renderWithRouter(<App />);
+  const detaislLink = screen.getByRole('link', { name: /more details/i });
+  expect(detaislLink).toBeInTheDocument();
+  userEvent.click(detaislLink);
+ 
+});
