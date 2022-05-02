@@ -1,7 +1,7 @@
 # :heavy_check_mark: React Testing Library :heavy_check_mark:
 
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white) ![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white) 
-
+<p>Para deixar ainda mais completo esse módulo de Frontend, chegamos aos testes \o/ ! Onde, para mim, tudo faz sentido de verdade!!! Dizem que sou uma das maiores entusiastas dos testes na turma . Mas como não ser entusiasta de algo que nos mostra onde queremos chegar? Nos mostra o caminho do que devemos fazer... É como um mapa. E se der qualquer erro, sabemos onde estamos errando e podemos agir rápido! Como não amar testes??</p>
 
 # Habilidades Desenvolvidas
 
