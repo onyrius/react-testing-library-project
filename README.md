@@ -47,7 +47,7 @@ Este repositório já continha uma aplicação React criada e configurada. Após
 
 ### Status do Projeto 
 
-<img src="" alt=""/>
+<img src="status-rtl.png" alt="status-rtl.png"/>
 
 
 ---
